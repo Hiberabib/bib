@@ -1,0 +1,696 @@
+# Copyright (c) 2013-2016 The Bitcoin Core developers
+# Distributed under the MIT software license, see the accompanying
+# file COPYING or http://www.opensource.org/licenses/mit-license.php.
+
+bin_PROGRAMS += qt/hibera-qt
+EXTRA_LIBRARIES += qt/libbitcoinqt.a
+
+# hibera qt core #
+include Makefile.qt_locale.include
+
+QT_FORMS_UI = \
+  qt/forms/addressbookpage.ui \
+  qt/forms/askpassphrasedialog.ui \
+  qt/forms/coincontroldialog.ui \
+  qt/forms/editaddressdialog.ui \
+  qt/forms/helpmessagedialog.ui \
+  qt/forms/intro.ui \
+  qt/forms/openuridialog.ui \
+  qt/forms/optionsdialog.ui \
+  qt/forms/rpcconsole.ui \
+  qt/hibera/forms/loadingdialog.ui \
+  qt/hibera/forms/snackbar.ui \
+  qt/hibera/forms/navmenuwidget.ui \
+  qt/hibera/forms/lockunlock.ui \
+  qt/hibera/forms/expandablebutton.ui \
+  qt/hibera/forms/receivedialog.ui \
+  qt/hibera/forms/topbar.ui \
+  qt/hibera/forms/txrow.ui \
+  qt/hibera/forms/dashboardwidget.ui \
+  qt/hibera/forms/addresslabelrow.ui \
+  qt/hibera/forms/contactdropdownrow.ui \
+  qt/hibera/forms/mninfodialog.ui \
+  qt/hibera/forms/optionbutton.ui \
+  qt/hibera/forms/masternodewizarddialog.ui \
+  qt/hibera/forms/mnrow.ui \
+  qt/hibera/forms/masternodeswidget.ui \
+  qt/hibera/forms/myaddressrow.ui \
+  qt/hibera/forms/sendchangeaddressdialog.ui \
+  qt/hibera/forms/sendconfirmdialog.ui \
+  qt/hibera/forms/sendcustomfeedialog.ui \
+  qt/hibera/forms/sendchangeaddressdialog.ui \
+  qt/hibera/forms/sendmultirow.ui \
+  qt/hibera/forms/send.ui \
+  qt/hibera/forms/addnewaddressdialog.ui \
+  qt/hibera/forms/addnewcontactdialog.ui \
+  qt/hibera/forms/requestdialog.ui \
+  qt/hibera/forms/receivewidget.ui \
+  qt/hibera/forms/tooltipmenu.ui \
+  qt/hibera/forms/addresseswidget.ui \
+  qt/hibera/forms/defaultdialog.ui \
+  qt/hibera/settings/forms/settingsbackupwallet.ui \
+  qt/hibera/settings/forms/settingsexportcsv.ui \
+  qt/hibera/settings/forms/settingsbittoolwidget.ui \
+  qt/hibera/settings/forms/settingsconsolewidget.ui \
+  qt/hibera/settings/forms/settingsdisplayoptionswidget.ui \
+  qt/hibera/settings/forms/settingsfaqwidget.ui \
+  qt/hibera/settings/forms/settingsinformationwidget.ui \
+  qt/hibera/settings/forms/settingsmainoptionswidget.ui \
+  qt/hibera/settings/forms/settingsmultisenddialog.ui \
+  qt/hibera/settings/forms/settingsmultisendwidget.ui \
+  qt/hibera/settings/forms/settingssignmessagewidgets.ui \
+  qt/hibera/settings/forms/settingswalletoptionswidget.ui \
+  qt/hibera/settings/forms/settingswalletrepairwidget.ui \
+  qt/hibera/settings/forms/settingswidget.ui \
+  qt/hibera/forms/welcomecontentwidget.ui \
+  qt/hibera/forms/splash.ui
+
+QT_MOC_CPP = \
+  qt/moc_addressbookpage.cpp \
+  qt/moc_addresstablemodel.cpp \
+  qt/moc_askpassphrasedialog.cpp \
+  qt/moc_bantablemodel.cpp \
+  qt/moc_bitcoinaddressvalidator.cpp \
+  qt/hibera/moc_hiberagui.cpp \
+  qt/moc_bitcoinunits.cpp \
+  qt/moc_clientmodel.cpp \
+  qt/moc_coincontroldialog.cpp \
+  qt/moc_coincontroltreewidget.cpp \
+  qt/moc_csvmodelwriter.cpp \
+  qt/moc_editaddressdialog.cpp \
+  qt/moc_guiutil.cpp \
+  qt/moc_intro.cpp \
+  qt/moc_macdockiconhandler.cpp \
+  qt/moc_macnotificationhandler.cpp \
+  qt/moc_notificator.cpp \
+  qt/moc_openuridialog.cpp \
+  qt/moc_optionsdialog.cpp \
+  qt/moc_optionsmodel.cpp \
+  qt/moc_peertablemodel.cpp \
+  qt/moc_paymentserver.cpp \
+  qt/moc_qvalidatedlineedit.cpp \
+  qt/moc_qvaluecombobox.cpp \
+  qt/moc_recentrequeststablemodel.cpp \
+  qt/moc_rpcconsole.cpp \
+  qt/moc_trafficgraphwidget.cpp \
+  qt/moc_transactionfilterproxy.cpp \
+  qt/moc_transactiontablemodel.cpp \
+  qt/moc_utilitydialog.cpp \
+  qt/moc_walletmodel.cpp \
+  qt/hibera/moc_loadingdialog.cpp \
+  qt/hibera/moc_pwidget.cpp \
+  qt/hibera/moc_focuseddialog.cpp \
+  qt/hibera/moc_snackbar.cpp \
+  qt/hibera/moc_navmenuwidget.cpp \
+  qt/hibera/moc_lockunlock.cpp \
+  qt/hibera/moc_expandablebutton.cpp \
+  qt/hibera/moc_furabstractlistitemdelegate.cpp \
+  qt/hibera/moc_receivedialog.cpp \
+  qt/hibera/moc_pfborderimage.cpp \
+  qt/hibera/moc_topbar.cpp \
+  qt/hibera/moc_txrow.cpp \
+  qt/hibera/moc_dashboardwidget.cpp \
+  qt/hibera/moc_addresslabelrow.cpp \
+  qt/hibera/moc_contactdropdownrow.cpp \
+  qt/hibera/moc_mninfodialog.cpp \
+  qt/hibera/moc_optionbutton.cpp \
+  qt/hibera/moc_mnmodel.cpp \
+  qt/hibera/moc_masternodewizarddialog.cpp \
+  qt/hibera/moc_mnrow.cpp \
+  qt/hibera/moc_masternodeswidget.cpp \
+  qt/hibera/moc_myaddressrow.cpp \
+  qt/hibera/moc_contactsdropdown.cpp \
+  qt/hibera/moc_sendchangeaddressdialog.cpp \
+  qt/hibera/moc_sendconfirmdialog.cpp \
+  qt/hibera/moc_sendcustomfeedialog.cpp \
+  qt/hibera/moc_sendchangeaddressdialog.cpp \
+  qt/hibera/moc_sendmultirow.cpp \
+  qt/hibera/moc_send.cpp \
+  qt/hibera/moc_addnewaddressdialog.cpp \
+  qt/hibera/moc_addnewcontactdialog.cpp \
+  qt/hibera/moc_requestdialog.cpp \
+  qt/hibera/moc_receivewidget.cpp \
+  qt/hibera/moc_tooltipmenu.cpp \
+  qt/hibera/moc_addresseswidget.cpp \
+  qt/hibera/moc_defaultdialog.cpp \
+  qt/hibera/settings/moc_settingsbackupwallet.cpp \
+  qt/hibera/settings/moc_settingsexportcsv.cpp \
+  qt/hibera/settings/moc_settingsbittoolwidget.cpp \
+  qt/hibera/settings/moc_settingsconsolewidget.cpp \
+  qt/hibera/settings/moc_settingsdisplayoptionswidget.cpp \
+  qt/hibera/settings/moc_settingsfaqwidget.cpp \
+  qt/hibera/settings/moc_settingsinformationwidget.cpp \
+  qt/hibera/settings/moc_settingsmainoptionswidget.cpp \
+  qt/hibera/settings/moc_settingsmultisenddialog.cpp \
+  qt/hibera/settings/moc_settingsmultisendwidget.cpp \
+  qt/hibera/settings/moc_settingssignmessagewidgets.cpp \
+  qt/hibera/settings/moc_settingswalletoptionswidget.cpp \
+  qt/hibera/settings/moc_settingswalletrepairwidget.cpp \
+  qt/hibera/settings/moc_settingswidget.cpp \
+  qt/hibera/moc_welcomecontentwidget.cpp \
+  qt/hibera/moc_splash.cpp
+
+BITCOIN_MM = \
+  qt/macdockiconhandler.mm \
+  qt/macnotificationhandler.mm
+
+QT_MOC = \
+  qt/hibera.moc \
+  qt/intro.moc \
+  qt/rpcconsole.moc \
+  qt/hibera/settings/moc_settingsconsolewidget.cpp
+
+QT_QRC_CPP = qt/qrc_hibera.cpp
+QT_QRC = qt/hibera.qrc
+QT_QRC_LOCALE_CPP = qt/qrc_hibera_locale.cpp
+QT_QRC_LOCALE = qt/hibera_locale.qrc
+
+PROTOBUF_CC = qt/paymentrequest.pb.cc
+PROTOBUF_H = qt/paymentrequest.pb.h
+PROTOBUF_PROTO = qt/paymentrequest.proto
+
+BITCOIN_QT_H = \
+  qt/addressbookpage.h \
+  qt/addresstablemodel.h \
+  qt/askpassphrasedialog.h \
+  qt/bantablemodel.h \
+  qt/bitcoinaddressvalidator.h \
+  qt/hibera/hiberagui.h \
+  qt/bitcoinunits.h \
+  qt/clientmodel.h \
+  qt/coincontroldialog.h \
+  qt/coincontroltreewidget.h \
+  qt/csvmodelwriter.h \
+  qt/editaddressdialog.h \
+  qt/guiconstants.h \
+  qt/guiutil.h \
+  qt/intro.h \
+  qt/macdockiconhandler.h \
+  qt/macnotificationhandler.h \
+  qt/networkstyle.h \
+  qt/notificator.h \
+  qt/openuridialog.h \
+  qt/optionsdialog.h \
+  qt/optionsmodel.h \
+  qt/paymentrequestplus.h \
+  qt/paymentserver.h \
+  qt/peertablemodel.h \
+  qt/platformstyle.h \
+  qt/qvalidatedlineedit.h \
+  qt/qvaluecombobox.h \
+  qt/recentrequeststablemodel.h \
+  qt/rpcconsole.h \
+  qt/trafficgraphwidget.h \
+  qt/transactionfilterproxy.h \
+  qt/transactionrecord.h \
+  qt/transactiontablemodel.h \
+  qt/utilitydialog.h \
+  qt/walletmodel.h \
+  qt/walletmodeltransaction.h \
+  qt/hibera/prunnable.h \
+  qt/hibera/pfborderimage.h \
+  qt/hibera/loadingdialog.h \
+  qt/winshutdownmonitor.h \
+  qt/hibera/pwidget.h \
+  qt/hibera/focuseddialog.h \
+  qt/hibera/guitransactionsutils.h \
+  qt/hibera/snackbar.h \
+  qt/hibera/navmenuwidget.h \
+  qt/hibera/lockunlock.h \
+  qt/hibera/receivedialog.h \
+  qt/hibera/furlistrow.h \
+  qt/hibera/furabstractlistitemdelegate.h \
+  qt/hibera/txviewholder.h \
+  qt/hibera/qtutils.h \
+  qt/hibera/expandablebutton.h \
+  qt/hibera/topbar.h \
+  qt/hibera/txrow.h \
+  qt/hibera/addressholder.h \
+  qt/hibera/addressfilterproxymodel.h \
+  qt/hibera/dashboardwidget.h \
+  qt/hibera/addresslabelrow.h \
+  qt/hibera/contactdropdownrow.h \
+  qt/hibera/mninfodialog.h \
+  qt/hibera/optionbutton.h \
+  qt/hibera/mnmodel.h \
+  qt/hibera/masternodewizarddialog.h \
+  qt/hibera/mnrow.h \
+  qt/hibera/masternodeswidget.h \
+  qt/hibera/myaddressrow.h \
+  qt/hibera/contactsdropdown.h \
+  qt/hibera/sendchangeaddressdialog.h \
+  qt/hibera/sendconfirmdialog.h \
+  qt/hibera/sendcustomfeedialog.h \
+  qt/hibera/sendchangeaddressdialog.h \
+  qt/hibera/sendmultirow.h \
+  qt/hibera/send.h \
+  qt/hibera/addnewaddressdialog.h \
+  qt/hibera/addnewcontactdialog.h \
+  qt/hibera/requestdialog.h \
+  qt/hibera/receivewidget.h \
+  qt/hibera/tooltipmenu.h \
+  qt/hibera/addresseswidget.h \
+  qt/hibera/defaultdialog.h \
+  qt/hibera/settings/settingsbackupwallet.h \
+  qt/hibera/settings/settingsexportcsv.h \
+  qt/hibera/settings/settingsbittoolwidget.h \
+  qt/hibera/settings/settingsconsolewidget.h \
+  qt/hibera/settings/settingsdisplayoptionswidget.h \
+  qt/hibera/settings/settingsfaqwidget.h \
+  qt/hibera/settings/settingsinformationwidget.h \
+  qt/hibera/settings/settingsmainoptionswidget.h \
+  qt/hibera/settings/settingsmultisenddialog.h \
+  qt/hibera/settings/settingsmultisendwidget.h \
+  qt/hibera/settings/settingssignmessagewidgets.h \
+  qt/hibera/settings/settingswalletoptionswidget.h \
+  qt/hibera/settings/settingswalletrepairwidget.h \
+  qt/hibera/settings/settingswidget.h \
+  qt/hibera/welcomecontentwidget.h \
+  qt/hibera/splash.h
+
+RES_ICONS = \
+  qt/res/icons/bitcoin.ico \
+  qt/res/icons/bitcoin.png \
+  qt/res/icons/bitcoin_testnet.ico \
+  qt/res/icons/bitcoin_testnet.png \
+  qt/res/icons/bitcoin_regtest.png \
+  qt/res/icons/lock_closed.png \
+  qt/res/icons/lock_open.png \
+  qt/res/icons/overview.png \
+  qt/res/icons/ic-transaction-received.svg \
+  qt/res/icons/ic-transaction-mint.svg \
+  qt/res/icons/ic-transaction-sent.svg \
+  qt/res/icons/ic-transaction-staked.svg \
+  qt/hibera/res/img/bg-dashboard-banner.png \
+  qt/hibera/res/img/bg-multi-number-dark.svg \
+  qt/hibera/res/img/ic-check-locked.svg \
+  qt/hibera/res/img/ic-check-console.svg \
+  qt/hibera/res/img/ic-nav-address.svg \
+  qt/hibera/res/img/ic-update.svg \
+  qt/hibera/res/img/bg-multi-number.svg \
+  qt/hibera/res/img/ic-check-mint-off.svg \
+  qt/hibera/res/img/ic-nav-dashboard-active.svg \
+  qt/hibera/res/img/ic-wallet-status-locked.svg \
+  qt/hibera/res/img/bg-splash.svg \
+  qt/hibera/res/img/bg-splash.png \
+  qt/hibera/res/img/ic-check-mint.svg \
+  qt/hibera/res/img/ic-nav-dashboard-hover.svg \
+  qt/hibera/res/img/ic-wallet-status-staking.svg \
+  qt/hibera/res/img/ic-check-peers-off.svg \
+  qt/hibera/res/img/ic-nav-dashboard.svg \
+  qt/hibera/res/img/ic-wallet-status-unlocked.svg \
+  qt/hibera/res/img/ic-check-peers.svg \
+  qt/hibera/res/img/ic-nav-master-active.svg \
+  qt/hibera/res/img/ic-watch-password-white.svg \
+  qt/hibera/res/img/bg-welcome-container.jpg \
+  qt/hibera/res/img/bg-welcome-container.png \
+  qt/hibera/res/img/bg-welcome-container.svg \
+  qt/hibera/res/img/bg-welcome-container@2x.png \
+  qt/hibera/res/img/bg-welcome-container@3x.png \
+  qt/hibera/res/img/ic-check-staking-off.svg \
+  qt/hibera/res/img/ic-nav-master-hover.svg \
+  qt/hibera/res/img/ic-watch-password.svg \
+  qt/hibera/res/img/bg-welcome.jpg \
+  qt/hibera/res/img/bg-welcome.svg \
+  qt/hibera/res/img/bg-welcome@2x.jpg \
+  qt/hibera/res/img/bg-welcome@3x.jpg \
+  qt/hibera/res/img/bg-welcome.png \
+  qt/hibera/res/img/ic-check-staking.svg \
+  qt/hibera/res/img/ic-nav-master.svg \
+  qt/hibera/res/img/img-dashboard-banner.jpg \
+  qt/hibera/res/img/btn-radio-active.svg \
+  qt/hibera/res/img/ic-check-mn-conf.svg \
+  qt/hibera/res/img/ic-check-coin-conf.svg \
+  qt/hibera/res/img/ic-check-sync-off.svg \
+  qt/hibera/res/img/ic-nav-privacy-active.svg \
+  qt/hibera/res/img/img-empty-contacts.svg \
+  qt/hibera/res/img/btn-radio-off.svg \
+  qt/hibera/res/img/ic-check-sync.png \
+  qt/hibera/res/img/ic-nav-privacy-hover.svg \
+  qt/hibera/res/img/img-empty-dark-contacts.svg \
+  qt/hibera/res/img/ic-contact-arrow-down.svg \
+  qt/hibera/res/img/ic-contact-arrow-down-white.svg \
+  qt/hibera/res/img/ic-check-sync.svg \
+  qt/hibera/res/img/ic-check-faq.svg \
+  qt/hibera/res/img/ic-nav-privacy.svg \
+  qt/hibera/res/img/img-empty-dark-error.svg \
+  qt/hibera/res/img/ic-add-label.svg \
+  qt/hibera/res/img/ic-pending.svg \
+  qt/hibera/res/img/ic-check-theme-dark.svg \
+  qt/hibera/res/img/ic-nav-receive-active.svg \
+  qt/hibera/res/img/img-empty-dark-masternode.svg \
+  qt/hibera/res/img/ic-add-liliac.svg \
+  qt/hibera/res/img/ic-check-theme-light.svg \
+  qt/hibera/res/img/ic-nav-receive-hover.svg \
+  qt/hibera/res/img/img-empty-dark-multisend.png \
+  qt/hibera/res/img/ic-add-purple.svg \
+  qt/hibera/res/img/ic-check-white.svg \
+  qt/hibera/res/img/ic-nav-receive.svg \
+  qt/hibera/res/img/img-empty-dark-peers.svg \
+  qt/hibera/res/img/ic-add.svg \
+  qt/hibera/res/img/ic-check.svg \
+  qt/hibera/res/img/ic-nav-send-active.svg \
+  qt/hibera/res/img/img-empty-dark-staking-off.png \
+  qt/hibera/res/img/img-empty-dark-staking-on.png \
+  qt/hibera/res/img/ic-address-book-grey.svg \
+  qt/hibera/res/img/ic-chevron-left.svg \
+  qt/hibera/res/img/ic-nav-send-hover.svg \
+  qt/hibera/res/img/img-empty-dark-transactions.png \
+  qt/hibera/res/img/ic-address-book-white.svg \
+  qt/hibera/res/img/ic-chevron-right.svg \
+  qt/hibera/res/img/ic-nav-send.svg \
+  qt/hibera/res/img/img-empty-error.svg \
+  qt/hibera/res/img/ic-address-book.svg \
+  qt/hibera/res/img/ic-clear-liliac.svg \
+  qt/hibera/res/img/ic-nav-settings-active.svg \
+  qt/hibera/res/img/img-empty-masternode.svg \
+  qt/hibera/res/img/ic-address-send-white.svg \
+  qt/hibera/res/img/ic-clear-purple.svg \
+  qt/hibera/res/img/ic-nav-settings-hover.svg \
+  qt/hibera/res/img/img-empty-multisend.png \
+  qt/hibera/res/img/ic-address-send.svg \
+  qt/hibera/res/img/ic-close-white.svg \
+  qt/hibera/res/img/ic-nav-settings.svg \
+  qt/hibera/res/img/img-empty-peers.svg \
+  qt/hibera/res/img/img-empty-privacy.png \
+  qt/hibera/res/img/img-empty-privacy-dark.png \
+  qt/hibera/res/img/ic-arrow-drop-down-white.svg \
+  qt/hibera/res/img/ic-close.svg \
+  qt/hibera/res/img/ic-radio-liliac-on.svg \
+  qt/hibera/res/img/img-empty-staking-off.png \
+  qt/hibera/res/img/ic-arrow-drop-down.svg \
+  qt/hibera/res/img/ic-coin-bib.png \
+  qt/hibera/res/img/ic-receive-off.svg \
+  qt/hibera/res/img/img-empty-staking-on.png \
+  qt/hibera/res/img/ic-arrow-drop-up-white.svg \
+  qt/hibera/res/img/ic-receive-on.svg \
+  qt/hibera/res/img/img-empty-transactions.png \
+  qt/hibera/res/img/ic-arrow-drop-up.svg \
+  qt/hibera/res/img/ic-received.svg \
+  qt/hibera/res/img/img-logo-hibera.png \
+  qt/hibera/res/img/ic-arrow-drop-white-down.svg \
+  qt/hibera/res/img/ic-combo-box.svg \
+  qt/hibera/res/img/ic-send.svg \
+  qt/hibera/res/img/img-logo-hibera@2x.png \
+  qt/hibera/res/img/ic-arrow-purple-down.svg \
+  qt/hibera/res/img/ic-connect.svg \
+  qt/hibera/res/img/ic-submenu-lock.svg \
+  qt/hibera/res/img/img-logo-hibera@3x.png \
+  qt/hibera/res/img/img-logo-hibera.svg \
+  qt/hibera/res/img/ic-arrow-right-white.svg \
+  qt/hibera/res/img/ic-arrow-left-white.svg \
+  qt/hibera/res/img/ic-arrow-left.svg \
+  qt/hibera/res/img/ic-copy-liliac.svg \
+  qt/hibera/res/img/ic-submenu-staking.svg \
+  qt/hibera/res/img/img-nav-logo-hibera.png \
+  qt/hibera/res/img/ic-arrow-right.svg \
+  qt/hibera/res/img/ic-copy.svg \
+  qt/hibera/res/img/ic-copy-big.svg \
+  qt/hibera/res/img/ic-copy-big-white.svg \
+  qt/hibera/res/img/ic-submenu-unlock.svg \
+  qt/hibera/res/img/img-nav-logo.png \
+  qt/hibera/res/img/ic-arrow-white-left.svg \
+  qt/hibera/res/img/ic-exit.svg \
+  qt/hibera/res/img/ic-switch-liliac-on.svg \
+  qt/hibera/res/img/img-nav-logo.svg \
+  qt/hibera/res/img/ic-arrow-white-right.svg \
+  qt/hibera/res/img/ic-expand.svg \
+  qt/hibera/res/img/ic-switch-off.svg \
+  qt/hibera/res/img/img-qr-test-big.png \
+  qt/hibera/res/img/ic-check-active.svg \
+  qt/hibera/res/img/ic-folder.svg \
+  qt/hibera/res/img/ic-switch-on.svg \
+  qt/hibera/res/img/img-qr-test.png \
+  qt/hibera/res/img/ic-check-box.svg \
+  qt/hibera/res/img/ic-check-box-dark-active.svg \
+  qt/hibera/res/img/ic-check-box-indeterminate.svg \
+  qt/hibera/res/img/ic-check-box-liliac-indeterminate.svg \
+  qt/hibera/res/img/ic-label-liliac.svg \
+  qt/hibera/res/img/ic-transaction-warning.svg \
+  qt/hibera/res/img/ic-transaction-mint.svg \
+  qt/hibera/res/img/ic-transaction-mint-inactive.svg \
+  qt/hibera/res/img/img-qr.svg \
+  qt/hibera/res/img/ic-check-connect-off.svg \
+  qt/hibera/res/img/ic-check-tor-off.svg \
+  qt/hibera/res/img/ic-check-tor.svg \
+  qt/hibera/res/img/ic-label.svg \
+  qt/hibera/res/img/ic-transaction-received.svg \
+  qt/hibera/res/img/dark/ic-transaction-received.svg \
+  qt/hibera/res/img/dark/ic-transaction-warning.svg \
+  qt/hibera/res/img/dark/ic-transaction-mint.svg \
+  qt/hibera/res/img/dark/ic-transaction-mint-inactive.svg \
+  qt/hibera/res/img/ic-transaction-received-inactive.svg \
+  qt/hibera/res/img/dark/ic-transaction-received-inactive.svg \
+  qt/hibera/res/img/img-welcome-step1.png \
+  qt/hibera/res/img/ic-check-connect.svg \
+  qt/hibera/res/img/ic-menu-hover.svg \
+  qt/hibera/res/img/ic-transaction-sent.svg \
+  qt/hibera/res/img/ic-transaction-sent-inactive.svg \
+  qt/hibera/res/img/dark/ic-transaction-sent.svg \
+  qt/hibera/res/img/dark/ic-transaction-sent-inactive.svg \
+  qt/hibera/res/img/img-welcome-step2.png \
+  qt/hibera/res/img/ic-check-dark.svg \
+  qt/hibera/res/img/ic-mint.svg \
+  qt/hibera/res/img/ic-transaction-staked.svg \
+  qt/hibera/res/img/ic-transaction-staked-inactive.svg \
+  qt/hibera/res/img/dark/ic-transaction-staked.svg \
+  qt/hibera/res/img/dark/ic-transaction-staked-inactive.svg \
+  qt/hibera/res/img/img-welcome-step3.png \
+  qt/hibera/res/img/ic-check-liliac-on.svg \
+  qt/hibera/res/img/ic-nav-address-active.svg \
+  qt/hibera/res/img/ic-unlock-staking.svg \
+  qt/hibera/res/img/img-welcome-step4.png \
+  qt/hibera/res/img/ic-check-locked-off.svg \
+  qt/hibera/res/img/ic-nav-address-hover.svg \
+  qt/hibera/res/img/ic-update-liliac.svg \
+  qt/hibera/res/img/ic-arrow-drop-down-purple.svg \
+  qt/hibera/res/img/ic-arrow-drop-up-purple.svg \
+  qt/hibera/res/img/ic-check-liliac-indeterminate.svg \
+  qt/hibera/res/img/ic-check-box-liliac-indeterminate.svg \
+  qt/hibera/res/img/ic-check-box-indeterminate.svg \
+  qt/hibera/res/img/ani-loading-dark.gif \
+  qt/hibera/res/img/ani-loading.gif
+
+
+
+BITCOIN_QT_BASE_CPP = \
+  qt/bantablemodel.cpp \
+  qt/bitcoinaddressvalidator.cpp \
+  qt/hibera/hiberagui.cpp \
+  qt/bitcoinunits.cpp \
+  qt/clientmodel.cpp \
+  qt/csvmodelwriter.cpp \
+  qt/guiutil.cpp \
+  qt/intro.cpp \
+  qt/networkstyle.cpp \
+  qt/notificator.cpp \
+  qt/optionsdialog.cpp \
+  qt/optionsmodel.cpp \
+  qt/peertablemodel.cpp \
+  qt/platformstyle.cpp \
+  qt/qvalidatedlineedit.cpp \
+  qt/qvaluecombobox.cpp \
+  qt/rpcconsole.cpp \
+  qt/trafficgraphwidget.cpp \
+  qt/utilitydialog.cpp
+
+BITCOIN_QT_WINDOWS_CPP = qt/winshutdownmonitor.cpp
+
+BITCOIN_QT_WALLET_CPP = \
+  qt/addressbookpage.cpp \
+  qt/addresstablemodel.cpp \
+  qt/askpassphrasedialog.cpp \
+  qt/coincontroldialog.cpp \
+  qt/coincontroltreewidget.cpp \
+  qt/editaddressdialog.cpp \
+  qt/openuridialog.cpp \
+  qt/paymentrequestplus.cpp \
+  qt/paymentserver.cpp \
+  qt/recentrequeststablemodel.cpp \
+  qt/transactionfilterproxy.cpp \
+  qt/transactionrecord.cpp \
+  qt/transactiontablemodel.cpp \
+  qt/walletmodel.cpp \
+  qt/walletmodeltransaction.cpp \
+  qt/hibera/loadingdialog.cpp \
+  qt/hibera/pwidget.cpp \
+  qt/hibera/focuseddialog.cpp \
+  qt/hibera/guitransactionsutils.cpp \
+  qt/hibera/snackbar.cpp \
+  qt/hibera/navmenuwidget.cpp \
+  qt/hibera/lockunlock.cpp \
+  qt/hibera/receivedialog.cpp \
+  qt/hibera/furabstractlistitemdelegate.cpp \
+  qt/hibera/txviewholder.cpp \
+  qt/hibera/qtutils.cpp \
+  qt/hibera/expandablebutton.cpp \
+  qt/hibera/topbar.cpp \
+  qt/hibera/txrow.cpp \
+  qt/hibera/addressholder.cpp \
+  qt/hibera/addressfilterproxymodel.cpp \
+  qt/hibera/dashboardwidget.cpp \
+  qt/hibera/addresslabelrow.cpp \
+  qt/hibera/contactdropdownrow.cpp \
+  qt/hibera/contactsdropdown.cpp \
+  qt/hibera/optionbutton.cpp \
+  qt/hibera/mninfodialog.cpp \
+  qt/hibera/mnmodel.cpp \
+  qt/hibera/masternodewizarddialog.cpp \
+  qt/hibera/mnrow.cpp \
+  qt/hibera/masternodeswidget.cpp \
+  qt/hibera/myaddressrow.cpp \
+  qt/hibera/sendchangeaddressdialog.cpp \
+  qt/hibera/sendconfirmdialog.cpp \
+  qt/hibera/sendcustomfeedialog.cpp \
+  qt/hibera/sendchangeaddressdialog.cpp \
+  qt/hibera/sendmultirow.cpp \
+  qt/hibera/send.cpp \
+  qt/hibera/addnewaddressdialog.cpp \
+  qt/hibera/addnewcontactdialog.cpp \
+  qt/hibera/requestdialog.cpp \
+  qt/hibera/receivewidget.cpp \
+  qt/hibera/tooltipmenu.cpp \
+  qt/hibera/addresseswidget.cpp \
+  qt/hibera/defaultdialog.cpp \
+  qt/hibera/settings/settingsbackupwallet.cpp \
+  qt/hibera/settings/settingsexportcsv.cpp \
+  qt/hibera/settings/settingsbittoolwidget.cpp \
+  qt/hibera/settings/settingsconsolewidget.cpp \
+  qt/hibera/settings/settingsdisplayoptionswidget.cpp \
+  qt/hibera/settings/settingsfaqwidget.cpp \
+  qt/hibera/settings/settingsinformationwidget.cpp \
+  qt/hibera/settings/settingsmainoptionswidget.cpp \
+  qt/hibera/settings/settingsmultisenddialog.cpp \
+  qt/hibera/settings/settingsmultisendwidget.cpp \
+  qt/hibera/settings/settingssignmessagewidgets.cpp \
+  qt/hibera/settings/settingswalletoptionswidget.cpp \
+  qt/hibera/settings/settingswalletrepairwidget.cpp \
+  qt/hibera/settings/settingswidget.cpp \
+  qt/hibera/welcomecontentwidget.cpp \
+  qt/hibera/splash.cpp
+
+
+BITCOIN_QT_CPP = $(BITCOIN_QT_BASE_CPP)
+if TARGET_WINDOWS
+BITCOIN_QT_CPP += $(BITCOIN_QT_WINDOWS_CPP)
+endif
+if ENABLE_WALLET
+BITCOIN_QT_CPP += $(BITCOIN_QT_WALLET_CPP)
+endif
+
+RES_IMAGES = \
+  qt/res/images/about.png \
+  qt/res/images/splash.png \
+  qt/res/images/splash_testnet.png \
+  qt/res/images/splash_regtest.png
+
+RES_CSS = \
+  qt/res/css/default.css \
+  qt/hibera/res/css/style_dark.css \
+  qt/hibera/res/css/style_light.css
+
+BITCOIN_RC = qt/res/hibera-qt-res.rc
+
+BITCOIN_QT_INCLUDES = -I$(builddir)/qt -I$(srcdir)/qt -I$(srcdir)/qt/forms \
+  -I$(builddir)/qt/forms -DQT_NO_KEYWORDS
+
+qt_libbitcoinqt_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
+  $(QT_INCLUDES) $(QT_DBUS_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS) $(SVG_CFLAGS) $(CHARTS_CFLAGS)
+qt_libbitcoinqt_a_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
+qt_libbitcoinqt_a_OBJCXXFLAGS = $(AM_OBJCXXFLAGS) $(QT_PIE_FLAGS)
+
+qt_libbitcoinqt_a_SOURCES = $(BITCOIN_QT_CPP) $(BITCOIN_QT_H) $(QT_FORMS_UI) \
+  $(QT_QRC) $(QT_QRC_LOCALE) $(QT_TS) $(PROTOBUF_PROTO) $(RES_ICONS) $(RES_IMAGES) $(RES_CSS)
+
+nodist_qt_libbitcoinqt_a_SOURCES = $(QT_MOC_CPP) $(QT_MOC) $(PROTOBUF_CC) \
+  $(PROTOBUF_H) $(QT_QRC_CPP) $(QT_QRC_LOCALE_CPP)
+
+# forms/foo.h -> forms/ui_foo.h
+QT_FORMS_H=$(join $(dir $(QT_FORMS_UI)),$(addprefix ui_, $(notdir $(QT_FORMS_UI:.ui=.h))))
+
+# Most files will depend on the forms and moc files as includes. Generate them
+# before anything else.
+$(QT_MOC): $(QT_FORMS_H)
+$(qt_libbitcoinqt_a_OBJECTS) $(qt_hibera_qt_OBJECTS) : | $(QT_MOC)
+
+#Generating these with a half-written protobuf header leads to wacky results.
+#This makes sure it's done.
+$(QT_MOC): $(PROTOBUF_H)
+$(QT_MOC_CPP): $(PROTOBUF_H)
+
+# hibera-qt binary #
+qt_hibera_qt_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
+  $(QT_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS) $(SVG_CFLAGS) $(CHARTS_CFLAGS)
+qt_hibera_qt_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
+
+qt_hibera_qt_SOURCES = qt/hibera.cpp
+if TARGET_DARWIN
+  qt_hibera_qt_SOURCES += $(BITCOIN_MM)
+endif
+if TARGET_WINDOWS
+  qt_hibera_qt_SOURCES += $(BITCOIN_RC)
+endif
+qt_hibera_qt_LDADD = qt/libbitcoinqt.a $(LIBBITCOIN_SERVER)
+if ENABLE_WALLET
+qt_hibera_qt_LDADD += $(LIBBITCOIN_UTIL) $(LIBBITCOIN_WALLET)
+endif
+if ENABLE_ZMQ
+qt_hibera_qt_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
+endif
+qt_hibera_qt_LDADD += $(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) $(LIBBITCOIN_CRYPTO) $(LIBUNIVALUE) $(LIBZCASH_LIBS) $(LIBLEVELDB) $(LIBLEVELDB_SSE42) $(LIBMEMENV) \
+  $(BOOST_LIBS) $(QT_LIBS) $(QT_DBUS_LIBS) $(QR_LIBS) $(PROTOBUF_LIBS) $(SVG_LIBS) $(CHARTS_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(LIBSECP256K1) \
+  $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
+qt_hibera_qt_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(QT_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+qt_hibera_qt_LIBTOOLFLAGS = $(AM_LIBTOOLFLAGS) --tag CXX
+
+#locale/foo.ts -> locale/foo.qm
+QT_QM=$(QT_TS:.ts=.qm)
+
+SECONDARY: $(QT_QM)
+
+$(srcdir)/qt/hiberastrings.cpp: $(libbitcoin_server_a_SOURCES) $(libbitcoin_wallet_a_SOURCES) $(libbitcoin_common_a_SOURCES) $(libbitcoin_zmq_a_SOURCES) $(libbitcoin_util_a_SOURCES)
+	@test -n $(XGETTEXT) || echo "xgettext is required for updating translations"
+	$(AM_V_GEN) cd $(srcdir); XGETTEXT=$(XGETTEXT) PACKAGE_NAME="$(PACKAGE_NAME)" $(PYTHON) ../share/qt/extract_strings_qt.py $^
+
+translate: $(srcdir)/qt/hiberastrings.cpp $(QT_FORMS_UI) $(QT_FORMS_UI) $(BITCOIN_QT_BASE_CPP) qt/hibera.cpp $(BITCOIN_QT_WINDOWS_CPP) $(BITCOIN_QT_WALLET_CPP) $(BITCOIN_QT_H) $(BITCOIN_MM)
+	@test -n $(LUPDATE) || echo "lupdate is required for updating translations"
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LUPDATE) $^ -locations relative -no-obsolete -ts $(srcdir)/qt/locale/hibera_en.ts
+
+$(QT_QRC_LOCALE_CPP): $(QT_QRC_LOCALE) $(QT_QM)
+	@test -f $(RCC)
+	@cp -f $< $(@D)/temp_$(<F)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name hibera_locale $(@D)/temp_$(<F) | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+	@rm $(@D)/temp_$(<F)
+
+$(QT_QRC_CPP): $(QT_QRC) $(QT_FORMS_H) $(RES_ICONS) $(RES_IMAGES) $(RES_CSS) $(PROTOBUF_H)
+	@test -f $(RCC)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name hibera $< | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+
+CLEAN_QT = $(nodist_qt_libbitcoinqt_a_SOURCES) $(QT_QM) $(QT_FORMS_H) qt/*.gcda qt/*.gcno qt/temp_hibera_locale.qrc
+
+CLEANFILES += $(CLEAN_QT)
+
+hibera_qt_clean: FORCE
+	rm -f $(CLEAN_QT) $(qt_libbitcoinqt_a_OBJECTS) $(qt_hibera_qt_OBJECTS) qt/hibera-qt$(EXEEXT) $(LIBBITCOINQT)
+
+hibera_qt : qt/hibera-qt$(EXEEXT)
+
+ui_%.h: %.ui
+	@test -f $(UIC)
+	@$(MKDIR_P) $(@D)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(UIC) -o $@ $< || (echo "Error creating $@"; false)
+
+%.moc: %.cpp
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(MOC) $(DEFAULT_INCLUDES) $(QT_INCLUDES) $(MOC_DEFS) $< | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+
+moc_%.cpp: %.h
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(MOC) $(DEFAULT_INCLUDES) $(QT_INCLUDES) $(MOC_DEFS) $< | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+
+%.qm: %.ts
+	@test -f $(LRELEASE)
+	@$(MKDIR_P) $(@D)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LRELEASE) -silent $< -qm $@

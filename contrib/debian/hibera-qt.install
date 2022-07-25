@@ -1,0 +1,6 @@
+usr/local/bin/hibera-qt usr/bin
+share/pixmaps/hibera32.xpm usr/share/pixmaps
+share/pixmaps/hibera16.xpm usr/share/pixmaps
+share/pixmaps/hibera128.png usr/share/pixmaps
+debian/hibera-qt.desktop usr/share/applications
+debian/hibera-qt.protocol usr/share/kde4/services/

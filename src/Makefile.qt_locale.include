@@ -1,0 +1,15 @@
+QT_TS = \
+  qt/locale/hibera_de.ts \
+  qt/locale/hibera_en.ts \
+  qt/locale/hibera_en_US.ts \
+  qt/locale/hibera_es.ts \
+  qt/locale/hibera_es_ES.ts \
+  qt/locale/hibera_fr_FR.ts \
+  qt/locale/hibera_hr_HR.ts \
+  qt/locale/hibera_it.ts \
+  qt/locale/hibera_ko_KR.ts \
+  qt/locale/hibera_nl.ts \
+  qt/locale/hibera_pl.ts \
+  qt/locale/hibera_ru.ts \
+  qt/locale/hibera_tr.ts \
+  qt/locale/hibera_zh_CN.ts

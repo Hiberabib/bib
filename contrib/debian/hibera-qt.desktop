@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Name=HIBERA
+Comment= BIB P2P Cryptocurrency
+Comment[fr]= BIB, monnaie virtuelle cryptographique pair à pair
+Comment[tr]= BIB, eşten eşe kriptografik sanal para birimi
+Exec=hibera-qt %u
+Terminal=false
+Type=Application
+Icon=hibera128
+MimeType=x-scheme-handler/hibera;
+Categories=Office;Finance;
+StartupWMClass=HIBERA-qt

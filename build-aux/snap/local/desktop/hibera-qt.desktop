@@ -1,0 +1,15 @@
+# http://standards.freedesktop.org/desktop-entry-spec/desktop-entry-spec-1.0.html
+
+[Desktop Entry]
+Encoding=UTF-8
+Name=HIBERA Core
+Comment=HIBERA Core QT main network
+GenericName=HIBERA Digital Currency QT client main network
+Exec=hibera-core.qt %u
+Terminal=false
+Type=Application
+Icon=${SNAP}/share/pixmaps/hibera.png
+MimeType=x-scheme-handler/hibera;
+Categories=X-Office;X-Finance;
+Keywords=internet;hibera;bib;core;wallet;qt;main;snap;launchpad;crypto;digital;currency;coin;token;
+Version=1.0

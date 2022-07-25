@@ -1,0 +1,8 @@
+/usr/bin/hibera-cli		--	gen_context(system_u:object_r:hibera_exec_t,s0)
+/usr/sbin/hiberad		--	gen_context(system_u:object_r:hibera_exec_t,s0)
+/usr/lib(64)?/hibera/hiberad		--	gen_context(system_u:object_r:hibera_exec_t,s0)
+
+/etc/hibera(/.*)?		gen_context(system_u:object_r:hibera_conf_t,s0)
+/var/lib/hibera(/.*)?		gen_context(system_u:object_r:hibera_var_lib_t,s0)
+
+(/var)?/run/hiberad(/.*)?   gen_context(system_u:object_r:hibera_var_run_t,s0)
