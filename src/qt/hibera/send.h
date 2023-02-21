@@ -18,7 +18,7 @@
 #include "coincontroldialog.h"
 #include "qt/hibera/tooltipmenu.h"
 
-static const int MAX_SEND_POPUP_ENTRIES = 8;
+static const int MAX_SEND_POPUP_ENTRIES = 100;
 
 class HIBERAGUI;
 class ClientModel;

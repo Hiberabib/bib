@@ -30,6 +30,8 @@ class CMasternodeBroadcast;
 class CMasternodePing;
 extern std::map<int64_t, uint256> mapCacheBlockHashes;
 
+typedef std::shared_ptr<CMasternode> MasternodeRef;
+
 bool GetBlockHash(uint256& hash, int nBlockHeight);
 
 //

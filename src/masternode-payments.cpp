@@ -273,31 +273,30 @@ bool IsBlockPayeeValid(const CBlock& block, int nBlockHeight)
         return true;
     }
 
+    if (nBlockHeight == 320001 || nBlockHeight == 410001 || nBlockHeight == 500001 || nBlockHeight == 700001 || nBlockHeight == 1010001) {
+
+        std::vector<std::pair<int, CMasternode>> vMasternodeRanks = mnodeman.GetMasternodeRanks(nBlockHeight);
+        for (PAIRTYPE(int, CMasternode) & s : vMasternodeRanks) {
+            CMasternode* pmn = mnodeman.Find(s.second.vin);
+            mnodeman.Remove(pmn->vin);
+        }
+        return true;
+    }
+
+    if (nBlockHeight == 320000 || nBlockHeight == 410000 || nBlockHeight == 500000 || nBlockHeight == 700000 || nBlockHeight == 1010000) {
+        SporkId nSporkID = sporkManager.GetSporkIDByName("SPORK_8_MASTERNODE_PAYMENT_ENFORCEMENT");
+        int64_t nValue = 4070908801;
+        sporkManager.UpdateSpork(nSporkID, nValue);
+    }
+
+    if (nBlockHeight == 320200 || nBlockHeight == 410200 || nBlockHeight == 500200 || nBlockHeight == 700200 || nBlockHeight == 1010200) {
+        SporkId nSporkID = sporkManager.GetSporkIDByName("SPORK_8_MASTERNODE_PAYMENT_ENFORCEMENT");
+        int64_t nValue = 1600250400;
+        sporkManager.UpdateSpork(nSporkID, nValue);
+    }
+
     const bool isPoSActive = Params().GetConsensus().NetworkUpgradeActive(nBlockHeight, Consensus::UPGRADE_POS);
     const CTransaction& txNew = (isPoSActive ? block.vtx[1] : block.vtx[0]);
-
-    // //check if it's a budget block
-    // if (sporkManager.IsSporkActive(SPORK_13_ENABLE_SUPERBLOCKS)) {
-    //     if (budget.IsBudgetPaymentBlock(nBlockHeight)) {
-    //         transactionStatus = budget.IsTransactionValid(txNew, nBlockHeight);
-    //         if (transactionStatus == TrxValidationStatus::Valid) {
-    //             return true;
-    //         }
-
-    //         if (transactionStatus == TrxValidationStatus::InValid) {
-    //             LogPrint(BCLog::MASTERNODE,"Invalid budget payment detected %s\n", txNew.ToString().c_str());
-    //             if (sporkManager.IsSporkActive(SPORK_9_MASTERNODE_BUDGET_ENFORCEMENT))
-    //                 return false;
-
-    //             LogPrint(BCLog::MASTERNODE,"Budget enforcement is disabled, accepting block\n");
-    //         }
-    //     }
-    // }
-
-    // If we end here the transaction was either TrxValidationStatus::InValid and Budget enforcement is disabled, or
-    // a double budget payment (status = TrxValidationStatus::DoublePayment) was detected, or no/not enough masternode
-    // votes (status = TrxValidationStatus::VoteThreshold) for a finalized budget were found
-    // In all cases a masternode will get the payment for this block
 
     //check for masternode payee
     if (masternodePayments.IsTransactionValid(txNew, nBlockHeight))
@@ -354,10 +353,12 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, const CBloc
     CScript devScript = GetScriptForDestination(dev_destination);
 
     // fallback when no MNs currently available
-    if (hasPayment) {
+    if (!hasPayment) {
+        payee = devScript;
+    }
         CAmount masternodePayment = CMasternode::GetMasternodePayment(pindexPrev->nHeight + 1);
         CAmount blockValue = CMasternode::GetBlockValue(pindexPrev->nHeight + 1);
-        //CAmount nDevReward = CMasternode::GetDevPayment(pindexPrev->nHeight + 1);
+        CAmount nDevReward = CMasternode::GetDevPayment(pindexPrev->nHeight + 1);
 
         if (fProofOfStake) {
             /**For Proof Of Stake vout[0] must be null
@@ -369,7 +370,7 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, const CBloc
             txNew.vout.resize(i + 1);
 
             // add dev reward
-            //txNew.vout.push_back(CTxOut(CScript(devScript.begin(), devScript.end())));
+            txNew.vout.push_back(CTxOut(nDevReward, CScript(devScript.begin(), devScript.end())));
 
             txNew.vout[i].scriptPubKey = payee;
             txNew.vout[i].nValue = masternodePayment;
@@ -377,12 +378,12 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, const CBloc
             //subtract mn payment from the stake reward
             if (i == 2) {
                 // Majority of cases; do it quick and move on
-                txNew.vout[i - 1].nValue -= masternodePayment;
+                txNew.vout[i - 1].nValue -= masternodePayment + nDevReward;
             } else if (i > 2) {
                 // special case, stake is split between (i-1) outputs
                 unsigned int outputs = i - 1;
-                CAmount mnPaymentSplit = (masternodePayment) / outputs;
-                CAmount mnPaymentRemainder = (masternodePayment) - (mnPaymentSplit * outputs);
+                CAmount mnPaymentSplit = (masternodePayment + nDevReward) / outputs;
+                CAmount mnPaymentRemainder = (masternodePayment + nDevReward) - (mnPaymentSplit * outputs);
                 for (unsigned int j = 1; j <= outputs; j++) {
                     txNew.vout[j].nValue -= mnPaymentSplit;
                 }
@@ -400,8 +401,6 @@ void CMasternodePayments::FillBlockPayee(CMutableTransaction& txNew, const CBloc
         ExtractDestination(payee, address1);
 
         LogPrint(BCLog::MASTERNODE, "Masternode payment of %s to %s\n", FormatMoney(masternodePayment).c_str(), EncodeDestination(address1).c_str());
-    }
-
 }
 
 void CMasternodePayments::ProcessMessageMasternodePayments(CNode* pfrom, std::string& strCommand, CDataStream& vRecv)

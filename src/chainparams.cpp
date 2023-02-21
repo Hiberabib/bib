@@ -70,20 +70,25 @@ static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits
  */
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
-    (0, uint256S("0x000001573f1c8285c1d19007300ec2719780abfffce2d9b83be8b04ba41abe81"))	
-    (78, uint256S("0x00000031c612dfefc221af03a33663b6bcc5c68daad2519552eba17da66d3fca"))	
-    (681, uint256S("0x262523eab03586e530cc161a498cf15bc8c61af50e4de62e0788f3b7ac14fc01"))	
-    (3418, uint256S("0x02231e922e52758c781d309307b059e5ba314e89e385d0f509f96c1b4290f2ec"))	
-    (5809, uint256S("0xe75e78bcbcfdf536cd9601c6771aa2fce0fd66daf83a4eb381d751839983915c"))	
-    (8054, uint256S("0x80d615b6fa17b797167c2ad88851360057dee9bd61254d4a0a705fa3e9c7e973"))	
-    (15985, uint256S("0xa770fbf141abd50d44557807cf3b48397bca4753079414c04ee06aa94ce130a3"))	
-    (18456, uint256S("0xa6916b7cf6da204471cc116110c6cf9d30190efc45bcc096a13ac6db7cc1dd08"))	
-; 
+    (0, uint256S("0x000001573f1c8285c1d19007300ec2719780abfffce2d9b83be8b04ba41abe81"))
+    (78, uint256S("0x00000031c612dfefc221af03a33663b6bcc5c68daad2519552eba17da66d3fca"))
+    (681, uint256S("0x262523eab03586e530cc161a498cf15bc8c61af50e4de62e0788f3b7ac14fc01"))
+    (3418, uint256S("0x02231e922e52758c781d309307b059e5ba314e89e385d0f509f96c1b4290f2ec"))
+    (5809, uint256S("0xe75e78bcbcfdf536cd9601c6771aa2fce0fd66daf83a4eb381d751839983915c"))
+    (8054, uint256S("0x80d615b6fa17b797167c2ad88851360057dee9bd61254d4a0a705fa3e9c7e973"))
+    (15985, uint256S("0xa770fbf141abd50d44557807cf3b48397bca4753079414c04ee06aa94ce130a3"))
+    (18456, uint256S("0xa6916b7cf6da204471cc116110c6cf9d30190efc45bcc096a13ac6db7cc1dd08"))
+    (26105, uint256S("0xf43c5b92369e20b1a277c13c197bf2ca6526e151ade6be483b118728d6190847"))
+    (89473, uint256S("0x31cfe2d4552ee1940ae8fac5a03c5944fb99dde27a6491153824dbd0e4dc756f"))
+    (143834, uint256S("0xa7d5679bd704989aede3706546e22c86075e1bfaf79fa990c14da3e2b5d2e26f"))
+    (226549, uint256S("0x3df6c1ae50a04758d1c6215ebd30397cdb29d129d84bcc3a4944dd3f5028a7ee"))
+    (313866, uint256S("0x27eec83e0fc1f377cf9f34d8a00c8705d669af7896b3c8470ff1353f2865846f"))
+;
 
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
-    1658721750, // * UNIX timestamp of last checkpoint block
-    36917,          // * total number of transactions between genesis and last checkpoint
+    1676866710, // * UNIX timestamp of last checkpoint block
+    641936,          // * total number of transactions between genesis and last checkpoint
                 //   (the tx=... number in the UpdateTip debug.log lines)
     2500        // * estimated number of transactions per day after checkpoint
 };
@@ -147,7 +152,7 @@ public:
         consensus.nTime_RejectOldSporkKey = 1660276800;   //Friday, 12 August 2022 4:00:00 AM GMT
 
         // dev address
-        consensus.devAddress = "";
+        consensus.devAddress = "H8F2YAVbH7JFW2QkNtxCfYpRJ8oo5cAz42";
 
         // burn addresses
         consensus.mBurnAddresses = {

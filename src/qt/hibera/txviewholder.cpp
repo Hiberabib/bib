@@ -17,26 +17,32 @@ QWidget* TxViewHolder::createHolder(int pos)
     return txRow;
 }
 
-void TxViewHolder::init(QWidget* holder,const QModelIndex &index, bool isHovered, bool isSelected) const
+void TxViewHolder::init(QWidget* holder, const QModelIndex& index, bool isHovered, bool isSelected) const
 {
-    TxRow *txRow = static_cast<TxRow*>(holder);
+    TxRow* txRow = static_cast<TxRow*>(holder);
     txRow->updateStatus(isLightTheme, isHovered, isSelected);
 
     QModelIndex rIndex = (filter) ? filter->mapToSource(index) : index;
     QDateTime date = rIndex.data(TransactionTableModel::DateRole).toDateTime();
     qint64 amount = rIndex.data(TransactionTableModel::AmountRole).toLongLong();
     QString amountText = BitcoinUnits::formatWithUnit(nDisplayUnit, amount, true, BitcoinUnits::separatorAlways);
-    QModelIndex indexType = rIndex.sibling(rIndex.row(),TransactionTableModel::Type);
+    QModelIndex indexType = rIndex.sibling(rIndex.row(), TransactionTableModel::Type);
     QString label = indexType.data(Qt::DisplayRole).toString();
     int type = rIndex.data(TransactionTableModel::TypeRole).toInt();
 
-    if (type == TransactionRecord::Other) {
+    if (type != TransactionRecord::Other) {
+        QString address = rIndex.data(Qt::DisplayRole).toString();
+        if (address.length() > 20) {
+            address = address.left(ADDRESS_SIZE) + "..." + address.right(ADDRESS_SIZE);
+        }
+        label += " " + address;
+    } else if (type == TransactionRecord::Other) {
         label += rIndex.data(Qt::DisplayRole).toString();
     }
 
     int status = rIndex.data(TransactionTableModel::StatusRole).toInt();
-    bool isUnconfirmed = (status == TransactionStatus::Unconfirmed) || (status == TransactionStatus::Immature)
-                         || (status == TransactionStatus::Conflicted) || (status == TransactionStatus::NotAccepted);
+    bool isUnconfirmed = (status == TransactionStatus::Unconfirmed) || (status == TransactionStatus::Immature) 
+                            || (status == TransactionStatus::Conflicted) || (status == TransactionStatus::NotAccepted);
 
     txRow->setDate(date);
     txRow->setLabel(label);
