@@ -180,7 +180,7 @@
 </tr>
 <tr>
 <td class="xl65" style="width: 120px; text-align: center;">410501</td>
-<td class="xl65" style="width: 120px; text-align: center;">500000</td>
+<td class="xl65" style="width: 120px; text-align: center;">440000</td>
 <td class="xl65" style="width: 180px; text-align: center;">1200000</td>
 <td class="xl65" style="width: 120px; text-align: center;">3</td>
 <td class="xl65" style="width: 120px; text-align: center;">1.5</td>
@@ -188,9 +188,36 @@
 <td class="xl66" style="width: 120px; text-align: center;">0.75</td>
 </tr>
 <tr>
+<td class="xl65" style="width: 120px; text-align: center;">440001</td>
+<td class="xl65" style="width: 120px; text-align: center;">440500</td>
+<td class="xl65" style="width: 180px; text-align: center;">5000000</td>
+<td class="xl65" style="width: 120px; text-align: center;">1</td>
+<td class="xl65" style="width: 120px; text-align: center;">0</td>
+<td class="xl66" style="width: 120px; text-align: center;">0.5</td>
+<td class="xl66" style="width: 120px; text-align: center;">0.5</td>
+</tr>
+<tr>
+<td class="xl65" style="width: 120px; text-align: center;">440501</td>
+<td class="xl65" style="width: 120px; text-align: center;">480000</td>
+<td class="xl65" style="width: 180px; text-align: center;">5000000</td>
+<td class="xl65" style="width: 120px; text-align: center;">5</td>
+<td class="xl65" style="width: 120px; text-align: center;">3</td>
+<td class="xl66" style="width: 120px; text-align: center;">1</td>
+<td class="xl66" style="width: 120px; text-align: center;">1</td>
+</tr>
+<tr>
+<td class="xl65" style="width: 120px; text-align: center;">480001</td>
+<td class="xl65" style="width: 120px; text-align: center;">500000</td>
+<td class="xl65" style="width: 180px; text-align: center;">5000000</td>
+<td class="xl65" style="width: 120px; text-align: center;">4</td>
+<td class="xl65" style="width: 120px; text-align: center;">2.5</td>
+<td class="xl66" style="width: 120px; text-align: center;">0.75</td>
+<td class="xl66" style="width: 120px; text-align: center;">0.75</td>
+</tr>
+<tr>
 <td class="xl65" style="width: 120px; text-align: center;">500001</td>
 <td class="xl65" style="width: 120px; text-align: center;">500500</td>
-<td class="xl65" style="width: 180px; text-align: center;">2000000</td>
+<td class="xl65" style="width: 180px; text-align: center;">7500000</td>
 <td class="xl65" style="width: 120px; text-align: center;">1</td>
 <td class="xl65" style="width: 120px; text-align: center;">0</td>
 <td class="xl66" style="width: 120px; text-align: center;">0.5</td>
@@ -198,75 +225,48 @@
 </tr>
 <tr>
 <td class="xl65" style="width: 120px; text-align: center;">500501</td>
-<td class="xl65" style="width: 120px; text-align: center;">510000</td>
-<td class="xl65" style="width: 180px; text-align: center;">2000000</td>
-<td class="xl65" style="width: 120px; text-align: center;">6.5</td>
-<td class="xl65" style="width: 120px; text-align: center;">3.5</td>
-<td class="xl66" style="width: 120px; text-align: center;">1.5</td>
-<td class="xl66" style="width: 120px; text-align: center;">1.5</td>
-</tr>
-<tr>
-<td class="xl65" style="width: 120px; text-align: center;">510001</td>
-<td class="xl65" style="width: 120px; text-align: center;">700000</td>
-<td class="xl65" style="width: 180px; text-align: center;">2000000</td>
-<td class="xl65" style="width: 120px; text-align: center;">2.5</td>
-<td class="xl65" style="width: 120px; text-align: center;">1.5</td>
+<td class="xl65" style="width: 120px; text-align: center;">550000</td>
+<td class="xl65" style="width: 180px; text-align: center;">7500000</td>
+<td class="xl65" style="width: 120px; text-align: center;">8</td>
+<td class="xl65" style="width: 120px; text-align: center;">7</td>
 <td class="xl66" style="width: 120px; text-align: center;">0.5</td>
 <td class="xl66" style="width: 120px; text-align: center;">0.5</td>
 </tr>
 <tr>
-<td class="xl65" style="width: 120px; text-align: center;">700001</td>
-<td class="xl65" style="width: 120px; text-align: center;">700500</td>
-<td class="xl65" style="width: 180px; text-align: center;">4000000</td>
+<td class="xl65" style="width: 120px; text-align: center;">550001</td>
+<td class="xl65" style="width: 120px; text-align: center;">600000</td>
+<td class="xl65" style="width: 180px; text-align: center;">10000000</td>
+<td class="xl65" style="width: 120px; text-align: center;">15</td>
+<td class="xl65" style="width: 120px; text-align: center;">13.5</td>
+<td class="xl66" style="width: 120px; text-align: center;">0.75</td>
+<td class="xl66" style="width: 120px; text-align: center;">0.75</td>
+</tr>
+<tr>
+<td class="xl65" style="width: 120px; text-align: center;">600001</td>
+<td class="xl65" style="width: 120px; text-align: center;">650000</td>
+<td class="xl65" style="width: 180px; text-align: center;">15000000</td>
+<td class="xl65" style="width: 120px; text-align: center;">17</td>
+<td class="xl65" style="width: 120px; text-align: center;">14</td>
+<td class="xl66" style="width: 120px; text-align: center;">1.5</td>
+<td class="xl66" style="width: 120px; text-align: center;">1.5</td>
+</tr>
+<tr>
+<td class="xl65" style="width: 120px; text-align: center;">650001</td>
+<td class="xl65" style="width: 120px; text-align: center;">650500</td>
+<td class="xl65" style="width: 180px; text-align: center;">25000000</td>
 <td class="xl65" style="width: 120px; text-align: center;">1</td>
 <td class="xl65" style="width: 120px; text-align: center;">0</td>
 <td class="xl66" style="width: 120px; text-align: center;">0.5</td>
 <td class="xl66" style="width: 120px; text-align: center;">0.5</td>
 </tr>
 <tr>
-<td class="xl65" style="width: 120px; text-align: center;">700501</td>
-<td class="xl65" style="width: 120px; text-align: center;">850000</td>
-<td class="xl65" style="width: 180px; text-align: center;">4000000</td>
-<td class="xl65" style="width: 120px; text-align: center;">2.5</td>
-<td class="xl65" style="width: 120px; text-align: center;">1.5</td>
-<td class="xl66" style="width: 120px; text-align: center;">0.5</td>
-<td class="xl66" style="width: 120px; text-align: center;">0.5</td>
-</tr>
-<tr>
-<td class="xl65" style="width: 120px; text-align: center;">850001</td>
-<td class="xl65" style="width: 120px; text-align: center;">1000000</td>
-<td class="xl65" style="width: 180px; text-align: center;">4000000</td>
-<td class="xl65" style="width: 120px; text-align: center;">4</td>
-<td class="xl65" style="width: 120px; text-align: center;">2.5</td>
-<td class="xl66" style="width: 120px; text-align: center;">0.75</td>
-<td class="xl66" style="width: 120px; text-align: center;">0.75</td>
-</tr>
-<tr>
-<td class="xl65" style="width: 120px; text-align: center;">1000001</td>
-<td class="xl65" style="width: 120px; text-align: center;">1010000</td>
-<td class="xl65" style="width: 180px; text-align: center;">4000000</td>
-<td class="xl65" style="width: 120px; text-align: center;">6.5</td>
-<td class="xl65" style="width: 120px; text-align: center;">4</td>
-<td class="xl66" style="width: 120px; text-align: center;">1.25</td>
-<td class="xl66" style="width: 120px; text-align: center;">1.25</td>
-</tr>
-<tr>
-<td class="xl65" style="width: 120px; text-align: center;">1010001</td>
-<td class="xl65" style="width: 120px; text-align: center;">1010500</td>
-<td class="xl65" style="width: 180px; text-align: center;">8000000</td>
-<td class="xl65" style="width: 120px; text-align: center;">1</td>
-<td class="xl65" style="width: 120px; text-align: center;">0</td>
-<td class="xl66" style="width: 120px; text-align: center;">0.5</td>
-<td class="xl66" style="width: 120px; text-align: center;">0.5</td>
-</tr>
-<tr>
-<td class="xl65" style="width: 120px; text-align: center;">1010501</td>
+<td class="xl65" style="width: 120px; text-align: center;">650501</td>
 <td class="xl65" style="width: 120px; text-align: center;">INFINITE</td>
-<td class="xl65" style="width: 180px; text-align: center;">8000000</td>
-<td class="xl65" style="width: 120px; text-align: center;">6.5</td>
-<td class="xl65" style="width: 120px; text-align: center;">4.5</td>
-<td class="xl66" style="width: 120px; text-align: center;">1</td>
-<td class="xl66" style="width: 120px; text-align: center;">1</td>
+<td class="xl65" style="width: 180px; text-align: center;">25000000</td>
+<td class="xl65" style="width: 120px; text-align: center;">22</td>
+<td class="xl65" style="width: 120px; text-align: center;">17</td>
+<td class="xl66" style="width: 120px; text-align: center;">2.5</td>
+<td class="xl66" style="width: 120px; text-align: center;">2.5</td>
 </tr>
 </tbody>
 </table>

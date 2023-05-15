@@ -283,13 +283,13 @@ bool IsBlockPayeeValid(const CBlock& block, int nBlockHeight)
         return true;
     }
 
-    if (nBlockHeight == 320000 || nBlockHeight == 410000 || nBlockHeight == 500000 || nBlockHeight == 700000 || nBlockHeight == 1010000) {
+    if (nBlockHeight == 320000 || nBlockHeight == 410000 || nBlockHeight == 440000 || nBlockHeight == 500000 || nBlockHeight == 550000 || nBlockHeight == 600000 || nBlockHeight == 650000) {
         SporkId nSporkID = sporkManager.GetSporkIDByName("SPORK_8_MASTERNODE_PAYMENT_ENFORCEMENT");
         int64_t nValue = 4070908801;
         sporkManager.UpdateSpork(nSporkID, nValue);
     }
 
-    if (nBlockHeight == 320200 || nBlockHeight == 410200 || nBlockHeight == 500200 || nBlockHeight == 700200 || nBlockHeight == 1010200) {
+    if (nBlockHeight == 320200 || nBlockHeight == 410200 || nBlockHeight == 440200 || nBlockHeight == 500200 || nBlockHeight == 550200 || nBlockHeight == 600200 || nBlockHeight == 650200) {
         SporkId nSporkID = sporkManager.GetSporkIDByName("SPORK_8_MASTERNODE_PAYMENT_ENFORCEMENT");
         int64_t nValue = 1600250400;
         sporkManager.UpdateSpork(nSporkID, nValue);
